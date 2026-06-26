@@ -11,6 +11,9 @@ research_task:
     4. Team — CEO background, key hires, team size
     5. Recent news — last 6 months of press, product launches, partnerships
     6. Any controversies, layoffs, or challenges
+    IMPORTANT: If you cannot find verified funding data from a reliable source,
+    explicitly say "UNVERIFIED" or "NOT FOUND" rather than estimating.
+    Never "make up" funding amounts or investor names.
     
     Search multiple times with different queries to get comprehensive data.
     Flag anything you couldn't find or aren't sure about.
@@ -52,7 +55,6 @@ writing_task:
     ## Market & Competitors
     ## Recent News & Momentum
     ## Risks & Challenges
-    ## Why This Matters (for a startup intern applicant)
     
     Keep each section concise but informative. Use bullet points inside sections.
   expected_output: >
