@@ -18,6 +18,14 @@ research_task:
 
 analysis_task:
   description: >
+    Important: If you cannot find any credible information about {company} in your first tool call , dont make any other tool calls  
+    after searching, do NOT make up information. Instead, respond with exactly:
+
+    "COMPANY_NOT_FOUND: No information found for '{company}'. 
+    Did you mean: [suggest 1-2 similar company names if possible]?"
+      
+    Only do this if you genuinely cannot find anything — not just because 
+    information is limited.
     Using the research on {company}, perform a competitive and business analysis:
     1. Business model — how do they make money?
     2. Target market — who are their customers and what's the market size?
