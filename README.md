@@ -7,9 +7,9 @@ Built as a portfolio project to explore production patterns in agentic AI — sp
 ---
 **Watch Demo -->[Here](https://github.com/user-attachments/assets/5b79d6b3-fbb2-47ba-8e1a-d2968888e88c)**
 
-[App Screenshot](assets/screenshot1.png)
-[App Screenshot](assets/screenshot2.png)
-[App Screenshot](assets/screenshot3.png)
+[App Screenshot](assests/screenshot1.png)
+[App Screenshot](assests/screenshot2.png)
+[App Screenshot](assests/screenshot3.png)
 ## What It Does
 
 Most startup research is tedious. You open five tabs, skim Crunchbase, search for recent news, try to piece together who the founders are and whether the company is actually growing. This project automates that workflow using three specialized AI agents that each own a distinct part of the research process.
@@ -97,7 +97,10 @@ cp .env.example .env
 Open `.env` and fill in:
 ```
 NVIDIA_NIM_API_KEY=your_key_here     # build.nvidia.com — free tier available
+
 TAVILY_API_KEY=your_key_here         # tavily.com — free tier available
+
+GROQ_API_KEY=your_key_here         # console.groq.com — free tier available
 ```
 
 **3. Run**
@@ -105,10 +108,6 @@ TAVILY_API_KEY=your_key_here         # tavily.com — free tier available
 streamlit run app.py
 ```
 
-Or from the terminal directly:
-```bash
-python graph.py "Zepto"
-```
 
 ---
 
