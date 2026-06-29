@@ -7,9 +7,10 @@ Built as a portfolio project to explore production patterns in agentic AI — sp
 ---
 **Watch Demo -->[Here](https://github.com/user-attachments/assets/5b79d6b3-fbb2-47ba-8e1a-d2968888e88c)**
 
-[App Screenshot](assests/screenshot1.png)
-[App Screenshot](assests/screenshot2.png)
-[App Screenshot](assests/screenshot3.png)
+[App Screenshot-1](assests/screenshot1.png)   ||
+[App Screenshot-2](assests/screenshot2.png)   ||
+[App Screenshot-3](assests/screenshot3.png)   ||
+[App Screenshot-4](assests/screenshot4.png)   ||
 ## What It Does
 
 Most startup research is tedious. You open five tabs, skim Crunchbase, search for recent news, try to piece together who the founders are and whether the company is actually growing. This project automates that workflow using three specialized AI agents that each own a distinct part of the research process.
@@ -130,7 +131,7 @@ They solve different problems. CrewAI is excellent at defining agent roles and p
 Separating agent personalities from execution code makes it much easier to tune agent behavior. Changing how the Researcher reasons only requires editing a YAML file, not refactoring Python. It also makes the system easier to hand off or collaborate on.
 
 **Token efficiency**
-Early versions of this project consumed over 1 million input tokens per run. After tuning `max_iter` values and with adjusting the Tavily Search tool's parameters ,**token usage dropped by roughly 80% with minimal impact on output quality.**
+Early versions of this project consumed over 1 million input tokens per run. After tuning `max_iter` values and with adjusting the Tavily Search tool's parameters ,**token usage dropped by roughly 50% with minimal impact on output quality.**
 
 **Why no evaluator agent?**
 An evaluator that uses the same search tools as the researcher doesn't add real value — it would just re-confirm what the researcher already found from the same sources. Instead, the Writer task instructions explicitly tell the agent to mark anything uncertain as `[UNVERIFIED]` rather than filling in gaps. Honest output is more useful than a rubber-stamped confidence score.
