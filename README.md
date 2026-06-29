@@ -129,6 +129,9 @@ Separating agent personalities from execution code makes it much easier to tune 
 **Token efficiency**
 Early versions of this project consumed over 1 million input tokens per run. After tuning `max_iter` values and with adjusting the Tavily Search tool's parameters ,**token usage dropped by roughly 80% with minimal impact on output quality.**
 
+**Why no evaluator agent?**
+An evaluator that uses the same search tools as the researcher doesn't add real value — it would just re-confirm what the researcher already found from the same sources. Instead, the Writer task instructions explicitly tell the agent to mark anything uncertain as `[UNVERIFIED]` rather than filling in gaps. Honest output is more useful than a rubber-stamped confidence score.
+ 
 ---
 
 ## Limitations
