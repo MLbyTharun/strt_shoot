@@ -44,23 +44,21 @@ class CompanyIntelligenceTool(BaseTool):
             api_key=os.getenv("TAVILY_API_KEY"),
             model_config=model_config,
             instructions="Extract product info, team, mission, and business model",
-            max_depth=4,
-            max_breadth=10,
-            limit=20,
         )
 
         # Step 2 — search web for funding, news, competitors
         search_result = await search_dedup(
             api_key=os.getenv("TAVILY_API_KEY"),
             queries=[
-                f"{company} startup funding investors",
-                f"{company} company news 2025 2026",
-                f"{company} competitors market analysis",
-                f"{company} business model revenue",
+                f'"{company}" what they are building core product technology stack',
+                f'"{company}" Y Combinator YC Wellfound Crunchbase funding seed series A investors',
+                f'"{company}" business model revenue stream competitors market analysis',
+                f'"{company}" AI GenAI initiatives recent news 2024 2025',
+                f'"{company}" customer complaints problems limitations reviews challenges'
             ],
             search_depth="advanced",
-            max_results=7,
             topic="general",
+            days = 180
         )
 
         # Combining both results

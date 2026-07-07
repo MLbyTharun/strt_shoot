@@ -1,73 +1,40 @@
 
 research_task:
   description: >
-    Research everything you can find about {company}. Use your tools to gather:
-    1. What does the company do? (product, customers, use case)
-    2. Founding story — who started it, when, and why?
-    3. Funding history — total raised, latest round, key investors
-    4. Team — CEO background, key hires, team size
-    5. Recent news — last 6 months of press, product launches, partnerships
-    6. Any controversies, layoffs, or challenges
+    You are given the company name: {company}. 
 
-    Important: Never guess or estimate funding amounts. If you can't find verified
-    data, mark it as [UNVERIFIED] rather than filling in numbers.
+    Use the Tavily Search tool to conduct comprehensive, multi-angle searches. 
+    Run searches for:
+    1. "{company} what they are building" 
+    2. "{company} YC funding OR wellfound OR crunchbase OR seed OR series A"
+    3. "{company} customer complaints OR problems OR limitations OR market gaps"
+
+    Compile your findings into a structured brief. You must discover:
+    1. Core Product/Service: What exactly are they building right now?
+    2. Funding & Backing: Have they gone through Y Combinator? Are they on Wellfound/AngelList? What's their latest known funding round (Seed, Series A, etc.)?
+    3. Problem Solved: What customer pain point are they actively fixing?
+    4. Active Problems/Limitations: What internal struggles, customer complaints, or technical limitations does the company currently face?
+
   expected_output: >
-    A detailed research dump with all findings organized by category.
-    Each fact should note its source. Uncertain info marked with [UNVERIFIED].
+     A detailed markdown report titled "Company Teardown: {company}" containing the four sections above, backed exclusively by your search results.
   agent: researcher
 
 analysis_task:
   description: >
-    Important: If you cannot find any credible information about {company} in your first tool call , dont make any other tool calls  
-    after searching, do NOT make up information. Instead, respond with exactly:
+    Review the Company Teardown provided by the Startup Intelligence Analyst. Based on their current product, limitations, and market position, you must design an AI/GenAI/Agentic AI improvement strategy that i can implement for them.
 
-    "COMPANY_NOT_FOUND: No information found for '{company}'. 
-    Did you mean: [suggest 1-2 similar company names if possible]?"
-      
-    Only do this if you genuinely cannot find anything — not just because 
-    information is limited.
-    Using the research on {company}, perform a competitive and business analysis:
-    1. Business model — how do they make money?
-    2. Target market — who are their customers and what's the market size?
-    3. Top 3-5 competitors — name them and explain how {company} differs
-    4. Key strengths and weaknesses
-    5. What's their moat (if any)?
-    6. Growth signals — any signs of traction or momentum?
-    IMPORTANT : Use the CompanyIntelligenceTool only to research COMPETITORS, 
-    not {company} itself — that research is already provided in context.
+    Your strategy must be split into two distinct parts:
+     1. The Developer Action Plan: Practical, high-impact AI/Agentic AI implementations I can build for them. (e.g., automating a manual process they currently do, building a multi-agent RAG system for their data, fine-tuning a model for their specific use case).that an person targeting {company} for a job or internship can build and present to the CEO as a demonstration of their value.
+     2. The CEO Pitch: How to frame these improvements so the CEO gets impressed. Focus on business value: competitive moats, cost reduction, user retention, or opening up new revenue streams. Explain *why* the CEO should value your development time.
+     3. Tips for someone who is targeting {company} for an job or internship , including what should he build for them under a day before reaching to the CEO and how to frame it in a way that makes the CEO want to hire them.
+
+    Do not suggest generic "add chatbots." Suggest cutting-edge Agentic AI, GenAI pipelines, multi-agent swarms, or advanced RAG implementations specifically tailored to their exact product and problems.
+
   expected_output: >
-    A structured analysis covering business model, market, competitors,
-    strengths/weaknesses, and moat. Be specific — avoid vague statements.
+    A persuasive, highly technical yet business-focused markdown document titled "AI Transformation Blueprint for {company}". Include a section specifically drafted to be sent directly to the CEO as a "cold opener" pitch.
+    A markdown document titled "What should an intern do for {company}" with a list of actionable steps and projects that an intern can build to demonstrate their value to the company.
+
   agent: analyst
   context:
     - research_task
-
-writing_task:
-  description: >
-    Using the research and analysis provided, write a polished company brief for {company}.
-
-    Format it exactly like this:
-
-    # {company} — Company Brief
-
-    ## TL;DR
-    (2-3 sentence summary — what they do, stage, why they matter)
-
-    ## Product & Business Model
-    ## Founding & Team
-    ## Funding
-    ## Market & Competitors
-    ## Recent News & Momentum
-    ## Risks & Challenges
-
-    Rules:
-    - Only use facts from the research provided — do not add anything new
-    - Keep each section concise but informative
-    - Use bullet points inside sections
-    - Mark anything uncertain as [UNVERIFIED]
-  expected_output: >
-    A clean, well-formatted markdown brief that someone could read in 3 minutes
-    and walk away knowing everything important about the company.
-  agent: writer
-  context:
-    - research_task
+#--------------------------------------------------------------------------------------------

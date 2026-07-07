@@ -24,8 +24,7 @@ llm = LLM(
     model="nvidia_nim/z-ai/glm-5.2",
     api_key=os.getenv("NVIDIA_NIM_API_KEY"),
     base_url="https://integrate.api.nvidia.com/v1",
-    temperature=0.3,
-    max_tokens=4096,
+    temperature=0.65,
 )
 
 
@@ -49,12 +48,11 @@ class StartupResearchCrew:
             config=self.agents_config["researcher"],
             llm=llm,
             tools=[
-                CompanyIntelligenceTool(),  # deep company research (crawl + search)
-                get_news_search_tool(),     # recent news specifically
+                CompanyIntelligenceTool()  
             ],
             verbose=True,
-            max_iter=5,
-            memory=False,
+            max_iter=12,
+            memory=True,
         )
 
     @agent
@@ -62,21 +60,12 @@ class StartupResearchCrew:
         return Agent(
             config=self.agents_config["analyst"],
             llm=llm,
-            tools=[CompanyIntelligenceTool(),
-                   get_search_tool(max_results=3)],  # targeted competitor searches
+            tools=[CompanyIntelligenceTool()],  # targeted competitor searches
             verbose=True,
-            max_iter=3,
-            memory=False,
+            max_iter=9,
+            memory=True,
         )
 
-    @agent
-    def writer(self) -> Agent:
-        return Agent(
-            config=self.agents_config["writer"],
-            llm=llm,
-            tools=[],       # writer works only from context — no search needed
-            verbose=True,
-        )
 
     # TASKS 
     @task
@@ -94,14 +83,6 @@ class StartupResearchCrew:
             context=[self.research_task()],
         )
 
-    @task
-    def writing_task(self) -> Task:
-        return Task(
-            config=self.tasks_config["writing_task"],
-            agent=self.writer(),
-            context=[self.research_task(), self.analysis_task()],
-            output_file="output/brief.md",
-        )
 
     # CREW
 
@@ -113,7 +94,7 @@ class StartupResearchCrew:
             process=Process.sequential,
             verbose=True,
             memory=False,
-            max_rpm=5,
+            max_rpm=9,
         )
 
 
