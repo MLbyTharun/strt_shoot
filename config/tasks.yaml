@@ -1,40 +1,70 @@
 
 research_task:
   description: >
-    You are given the company name: {company}. 
+    You are given the company name: {company}.
 
-    Use the Tavily Search tool to conduct comprehensive, multi-angle searches. 
-    Run searches for:
-    1. "{company} what they are building" 
-    2. "{company} YC funding OR wellfound OR crunchbase OR seed OR series A"
-    3. "{company} customer complaints OR problems OR limitations OR market gaps"
+    Use the Tavily Search tool to run multiple targeted searches. Run at minimum these angles:
+    1. "{company} product OR platform OR what they are building"
+    2. "{company} YC OR wellfound OR crunchbase OR funding OR seed OR series"
+    3. "{company} customer complaints OR reviews OR limitations OR pain points"
+    4. "{company} AI OR automation OR agents OR LLM OR GPT" (does the company already use AI?)
+    5. "{company} hiring OR jobs OR intern OR engineering blog" (what skills are they hiring for?)
 
-    Compile your findings into a structured brief. You must discover:
-    1. Core Product/Service: What exactly are they building right now?
-    2. Funding & Backing: Have they gone through Y Combinator? Are they on Wellfound/AngelList? What's their latest known funding round (Seed, Series A, etc.)?
-    3. Problem Solved: What customer pain point are they actively fixing?
-    4. Active Problems/Limitations: What internal struggles, customer complaints, or technical limitations does the company currently face?
+    Compile your findings into a structured brief. Discover:
+    1. Core Product/Service: What exactly are they building right now, and for whom?
+    2. Funding & Stage: YC? Wellfound? Latest known round? Who backs them?
+    3. Customer Problems They Solve: What pain point are they actively fixing?
+    4. Active Problems/Limitations: What do users complain about? What internal gaps exist in their product, ops, or support?
+    5. AI Maturity: Are they already using AI? If yes, how? If no, what's the obvious gap?
+    6. Hiring Signals: What roles are they posting? This reveals what the founder values and where an AI/GenAI/Agentic AI intern can slot in.
 
   expected_output: >
-     A detailed markdown report titled "Company Teardown: {company}" containing the four sections above, backed exclusively by your search results.
+    A detailed markdown report titled "Company Teardown: {company}" with the six sections above. Every claim must be backed by a search result or flagged as a data gap. Include a final "Intern Hook" section — the single sharpest observation that an AI intern could turn into a 6–7 hour demo project.
   agent: researcher
 
 analysis_task:
   description: >
-    Review the Company Teardown provided by the Startup Intelligence Analyst. Based on their current product, limitations, and market position, you must design an AI/GenAI/Agentic AI improvement strategy that i can implement for them.
+    Review the Company Teardown for {company}. Your job is to design a strategy that helps an AI/GenAI/Agentic AI intern get HIRED by building something small, sharp, and demoable in under 6 to 7 hours.
 
-    Your strategy must be split into two distinct parts:
-     1. The Developer Action Plan: Practical, high-impact AI/Agentic AI implementations I can build for them. (e.g., automating a manual process they currently do, building a multi-agent RAG system for their data, fine-tuning a model for their specific use case).that an person targeting {company} for a job or internship can build and present to the CEO as a demonstration of their value.
-     2. The CEO Pitch: How to frame these improvements so the CEO gets impressed. Focus on business value: competitive moats, cost reduction, user retention, or opening up new revenue streams. Explain *why* the CEO should value your development time.
-     3. Tips for someone who is targeting {company} for an job or internship , including what should he build for them under a day before reaching to the CEO and how to frame it in a way that makes the CEO want to hire them.
+    Deliver three things, in this exact order:
 
-    Do not suggest generic "add chatbots." Suggest cutting-edge Agentic AI, GenAI pipelines, multi-agent swarms, or advanced RAG implementations specifically tailored to their exact product and problems.
+    1. THE INTERN PROJECT (the main deliverable):
+       Design ONE specific AI/GenAI/Agentic AI project an intern can build in 6 to 7 hours that:
+       - Solves a real, verified pain point from the Company Teardown.
+       - Uses free/open-source tools (LangChain, CrewAI, AutoGen, OpenAI free tier, Ollama, Streamlit, etc.).
+       - Produces a tangible artifact: working prototype, demo video, Loom walkthrough, or Notion doc with mockups.
+       - Showcases agentic thinking (multi-agent pipeline, RAG, autonomous workflow, tool-using agent).
+       - Is scoped so a single intern can finish it before reaching out to the CEO.
+
+       Specify: project name, exact problem solved, tech stack, agent architecture (roles + flow), implementation steps, and what the final demo looks like.
+
+    2. THE CEO PITCH (the cold opener):
+       Write a short, persuasive pitch (email or DM format) the intern can send directly to the founder/CEO. Frame the project as:
+       - A solution to a problem the CEO already knows about.
+       - A cost-saver or revenue-enabler, not just a "cool AI thing."
+       - A signal of the intern's thinking ability — not just coding skill.
+       The pitch must be under 200 words and reference the specific project from part 1.
+
+    3. INTERN TIPS FOR {company}:
+       A short, scannable list of do's and don'ts for someone targeting {company} for an AI/GenAI/Agentic AI internship or job. Include:
+       - What to build (and what NOT to build).
+       - How to reach out (warm vs cold, timing, channel).
+       - How to frame the work so the CEO sees hiring potential, not just a free demo.
+       - The one mistake that gets interns ignored.
+
+    Hard rules:
+    - No generic "add a chatbot" suggestions.
+    - No projects requiring proprietary data the intern won't have access to.
+    - No projects that take longer than 6 to 7 hours for one person.
+    - Bias toward agentic AI, RAG, multi-agent workflows, or autonomous automation — not static ML models.
 
   expected_output: >
-    A persuasive, highly technical yet business-focused markdown document titled "AI Transformation Blueprint for {company}". Include a section specifically drafted to be sent directly to the CEO as a "cold opener" pitch.
-    A markdown document titled "What should an intern do for {company}" with a list of actionable steps and projects that an intern can build to demonstrate their value to the company.
+    A persuasive, technically sharp yet business-focused markdown document titled "AI Intern Playbook for {company}" containing exactly three sections:
+    1. "The 6 to 7 Hour Project" — the buildable demo
+    2. "The CEO Cold Pitch" — the ready-to-send message
+    3. "Intern Tips for {company}" — the do's and don'ts
 
+    Tone: confident, specific, no fluff. And IMPORTANTLY Every recommendation must reference a real finding from the Company Teardown.
   agent: analyst
   context:
     - research_task
-#--------------------------------------------------------------------------------------------
