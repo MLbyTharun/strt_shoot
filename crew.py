@@ -51,8 +51,8 @@ class StartupResearchCrew:
                 CompanyIntelligenceTool()  
             ],
             verbose=True,
-            max_iter=12,
-            memory=True,
+            max_iter=7,
+            memory=False,
         )
 
     @agent
@@ -62,8 +62,8 @@ class StartupResearchCrew:
             llm=llm,
             tools=[CompanyIntelligenceTool()],  # targeted competitor searches
             verbose=True,
-            max_iter=9,
-            memory=True,
+            max_iter=5,
+            memory=False,
         )
 
 
@@ -94,7 +94,7 @@ class StartupResearchCrew:
             process=Process.sequential,
             verbose=True,
             memory=False,
-            max_rpm=9,
+            max_rpm=8,
         )
 
 
