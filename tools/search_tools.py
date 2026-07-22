@@ -15,7 +15,7 @@ from tavily_agent_toolkit import (
 )
 from dotenv import load_dotenv
 
-load_dotenv
+load_dotenv()
 
 # Model config using Groq gpt-oss-120b
 model_config = ModelConfig(
